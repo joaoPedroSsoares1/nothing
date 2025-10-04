@@ -1,30 +1,14 @@
 import { useState } from "react";
 import { Button } from "@/components/ui/button";
-import { Card, CardContent } from "@/components/ui/card";
 import { Link } from "react-router-dom";
-import wheyImage from "@/assets/whey-protein.jpg";
-import creatinaImage from "@/assets/creatina.jpg";
-import preTreinoImage from "@/assets/pre-treino.jpg";
+import { products } from "@/data/products";
+import { categories } from "@/data/categories";
+import { useFilteredProducts } from "@/hooks/useFilteredProducts";
+import { ProductCard } from "@/components/ProductCard";
 
 const Produtos = () => {
   const [activeFilter, setActiveFilter] = useState("Todos");
-
-  const filters = ["Todos", "Proteínas", "Creatinas", "Pré-treinos", "Vitaminas"];
-
-  const products = [
-    { name: "Whey Protein Isolado", category: "Proteínas", image: wheyImage, description: "Proteína de alta qualidade" },
-    { name: "Whey Protein Concentrado", category: "Proteínas", image: wheyImage, description: "Excelente custo-benefício" },
-    { name: "Creatina Monohidratada", category: "Creatinas", image: creatinaImage, description: "Aumento de força e energia" },
-    { name: "Creatina Micronizada", category: "Creatinas", image: creatinaImage, description: "Melhor absorção" },
-    { name: "Pré-treino Energy", category: "Pré-treinos", image: preTreinoImage, description: "Energia e foco máximo" },
-    { name: "Pré-treino Pump", category: "Pré-treinos", image: preTreinoImage, description: "Aumento de performance" },
-    { name: "Multivitamínico", category: "Vitaminas", image: wheyImage, description: "Suporte nutricional completo" },
-    { name: "Vitamina D3", category: "Vitaminas", image: wheyImage, description: "Saúde óssea e imunidade" },
-  ];
-
-  const filteredProducts = activeFilter === "Todos" 
-    ? products 
-    : products.filter(p => p.category === activeFilter);
+  const filteredProducts = useFilteredProducts(products, activeFilter);
 
   return (
     <div className="min-h-screen bg-background">
@@ -63,7 +47,7 @@ const Produtos = () => {
       <section className="py-8 bg-background sticky top-20 z-40 border-b border-border">
         <div className="container mx-auto px-4">
           <div className="flex flex-wrap justify-center gap-4">
-            {filters.map((filter) => (
+            {categories.map((filter) => (
               <Button
                 key={filter}
                 variant={activeFilter === filter ? "default" : "outline"}
@@ -86,37 +70,7 @@ const Produtos = () => {
         <div className="container mx-auto px-4">
           <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
             {filteredProducts.map((product, index) => (
-              <Card 
-                key={index} 
-                className="overflow-hidden border-2 border-border hover:border-primary transition-all hover:shadow-xl hover:scale-105 duration-300"
-              >
-                <CardContent className="p-0">
-                  <div className="aspect-square overflow-hidden bg-muted">
-                    <img 
-                      src={product.image} 
-                      alt={product.name}
-                      className="w-full h-full object-cover"
-                    />
-                  </div>
-                  <div className="p-6">
-                    <span className="text-sm text-primary font-semibold font-[Montserrat]">
-                      {product.category}
-                    </span>
-                    <h3 className="text-xl font-bold mt-2 mb-2 text-secondary font-[Montserrat]">
-                      {product.name}
-                    </h3>
-                    <p className="text-muted-foreground text-sm mb-4 font-[Open_Sans]">
-                      {product.description}
-                    </p>
-                    <Button 
-                      variant="outline" 
-                      className="w-full border-primary text-primary hover:bg-primary hover:text-secondary font-[Montserrat]"
-                    >
-                      Consulte disponibilidade
-                    </Button>
-                  </div>
-                </CardContent>
-              </Card>
+              <ProductCard key={index} product={product} />
             ))}
           </div>
 
