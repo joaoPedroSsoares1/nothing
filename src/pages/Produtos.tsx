@@ -46,7 +46,7 @@ const Produtos = () => {
       </section>
 
       {/* Filters */}
-      <section className="py-8 bg-background sticky top-20 z-40 border-b-2 border-border backdrop-blur-sm">
+      <section className="py-8 bg-background top-20 z-40 border-b-2 border-border backdrop-blur-sm">
         <div className="container mx-auto px-4">
           <div className="flex flex-wrap justify-center gap-4">
             {categories.map((filter) => (
