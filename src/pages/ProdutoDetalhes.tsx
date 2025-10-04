@@ -41,15 +41,35 @@ const ProdutoDetalhes = () => {
   }
 
   const handleAddToCart = () => {
-    addItem(product);
+    if (product.flavors.length > 0 && !selectedFlavor) {
+      toast({
+        title: "Sabor obrigatório",
+        description: "Por favor, selecione um sabor antes de adicionar ao carrinho.",
+        variant: "destructive",
+      });
+      return;
+    }
+    
+    addItem(product, selectedFlavor || undefined);
     toast({
       title: "Produto adicionado!",
-      description: `${product.name} foi adicionado ao carrinho.`,
+      description: selectedFlavor 
+        ? `${product.name} - ${selectedFlavor} foi adicionado ao carrinho.`
+        : `${product.name} foi adicionado ao carrinho.`,
     });
   };
 
   const handleWhatsAppBuy = () => {
-    sendProductWhatsApp(product);
+    if (product.flavors.length > 0 && !selectedFlavor) {
+      toast({
+        title: "Sabor obrigatório",
+        description: "Por favor, selecione um sabor antes de comprar.",
+        variant: "destructive",
+      });
+      return;
+    }
+    
+    sendProductWhatsApp(product, selectedFlavor || undefined);
   };
 
   return (
@@ -132,7 +152,7 @@ const ProdutoDetalhes = () => {
             {product.flavors.length > 0 && (
               <div className="border-t border-border pt-6">
                 <h2 className="text-xl font-bold text-secondary mb-3 font-[Montserrat]">
-                  Escolha o sabor
+                  Escolha o sabor <span className="text-destructive">*</span>
                 </h2>
                 <Select value={selectedFlavor} onValueChange={setSelectedFlavor}>
                   <SelectTrigger className="w-full border-2 border-primary text-foreground bg-background">
@@ -146,6 +166,7 @@ const ProdutoDetalhes = () => {
                     ))}
                   </SelectContent>
                 </Select>
+                <p className="text-sm text-muted-foreground mt-1 font-[Open_Sans]">* Obrigatório</p>
               </div>
             )}
 

@@ -3,7 +3,7 @@ import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import { useCart } from "@/contexts/CartContext";
 import { sendCartWhatsApp } from "@/utils/whatsapp";
-import { Minus, Plus, Trash2, ShoppingBag } from "lucide-react";
+import { Minus, Plus, Trash2, ShoppingBag, Coffee } from "lucide-react";
 import { CartButton } from "@/components/CartButton";
 
 const Carrinho = () => {
@@ -69,8 +69,8 @@ const Carrinho = () => {
           ) : (
             <>
               <div className="space-y-4 mb-8">
-                {items.map((item) => (
-                  <Card key={item.name} className="border-2 border-border">
+                {items.map((item, index) => (
+                  <Card key={`${item.name}-${item.selectedFlavor || 'default'}-${index}`} className="border-2 border-border">
                     <CardContent className="p-6">
                       <div className="flex gap-6 items-center">
                         <div className="w-24 h-24 rounded-lg overflow-hidden bg-muted flex-shrink-0">
@@ -88,7 +88,15 @@ const Carrinho = () => {
                           <h3 className="text-xl font-bold text-secondary font-[Montserrat]">
                             {item.name}
                           </h3>
-                          <p className="text-sm text-muted-foreground font-[Open_Sans]">
+                          {item.selectedFlavor && (
+                            <div className="flex items-center gap-2 mt-1">
+                              <Coffee className="h-4 w-4 text-primary" />
+                              <p className="text-sm text-primary font-semibold font-[Open_Sans]">
+                                Sabor: {item.selectedFlavor}
+                              </p>
+                            </div>
+                          )}
+                          <p className="text-sm text-muted-foreground font-[Open_Sans] mt-1">
                             {item.description}
                           </p>
                         </div>
@@ -97,7 +105,7 @@ const Carrinho = () => {
                           <Button
                             variant="outline"
                             size="icon"
-                            onClick={() => updateQuantity(item.name, item.quantity - 1)}
+                            onClick={() => updateQuantity(item.name, item.quantity - 1, item.selectedFlavor)}
                             className="border-primary text-primary hover:bg-primary/10"
                           >
                             <Minus className="h-4 w-4" />
@@ -108,7 +116,7 @@ const Carrinho = () => {
                           <Button
                             variant="outline"
                             size="icon"
-                            onClick={() => updateQuantity(item.name, item.quantity + 1)}
+                            onClick={() => updateQuantity(item.name, item.quantity + 1, item.selectedFlavor)}
                             className="border-primary text-primary hover:bg-primary/10"
                           >
                             <Plus className="h-4 w-4" />
@@ -118,7 +126,7 @@ const Carrinho = () => {
                         <Button
                           variant="outline"
                           size="icon"
-                          onClick={() => removeItem(item.name)}
+                          onClick={() => removeItem(item.name, item.selectedFlavor)}
                           className="border-destructive text-destructive hover:bg-destructive/10"
                         >
                           <Trash2 className="h-4 w-4" />
