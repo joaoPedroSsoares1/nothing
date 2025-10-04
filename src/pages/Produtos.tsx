@@ -5,6 +5,7 @@ import { products } from "@/data/products";
 import { categories } from "@/data/categories";
 import { useFilteredProducts } from "@/hooks/useFilteredProducts";
 import { ProductCard } from "@/components/ProductCard";
+import { CartButton } from "@/components/CartButton";
 
 const Produtos = () => {
   const [activeFilter, setActiveFilter] = useState("Todos");
@@ -20,13 +21,14 @@ const Produtos = () => {
               Natural Físico
             </h1>
           </Link>
-          <div className="flex gap-6">
+          <div className="flex gap-6 items-center">
             <Link to="/" className="text-white hover:text-primary transition-colors font-[Montserrat] font-semibold">
               Home
             </Link>
             <Link to="/produtos" className="text-primary hover:text-primary/80 transition-colors font-[Montserrat] font-semibold">
               Produtos
             </Link>
+            <CartButton />
           </div>
         </div>
       </nav>

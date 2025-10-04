@@ -2,6 +2,7 @@ import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import { Shield, Dumbbell, Users, Instagram, Facebook, MapPin } from "lucide-react";
 import { Link } from "react-router-dom";
+import { CartButton } from "@/components/CartButton";
 import heroImage from "@/assets/hero-training.jpg";
 import wheyImage from "@/assets/whey-protein.jpg";
 import creatinaImage from "@/assets/creatina.jpg";
@@ -32,13 +33,14 @@ const Home = () => {
       <nav className="fixed top-0 left-0 right-0 z-50 bg-secondary/95 backdrop-blur-sm border-b border-primary/20">
         <div className="container mx-auto px-4 py-4 flex items-center justify-between">
           <h1 className="text-2xl font-bold text-primary font-[Montserrat]">Natural Físico</h1>
-          <div className="flex gap-6">
+          <div className="flex gap-6 items-center">
             <Link to="/" className="text-primary hover:text-primary/80 transition-colors font-[Montserrat] font-semibold">
               Home
             </Link>
             <Link to="/produtos" className="text-white hover:text-primary transition-colors font-[Montserrat] font-semibold">
               Produtos
             </Link>
+            <CartButton />
           </div>
         </div>
       </nav>
