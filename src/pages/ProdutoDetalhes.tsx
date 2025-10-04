@@ -73,12 +73,12 @@ const ProdutoDetalhes = () => {
   };
 
   return (
-    <div className="min-h-screen bg-background">
+    <div className="h-screen overflow-hidden bg-background flex flex-col">
       {/* Navigation */}
       <nav className="fixed top-0 left-0 right-0 z-50 bg-secondary/95 backdrop-blur-sm border-b border-primary/20">
-        <div className="container mx-auto px-4 py-4 flex items-center justify-between">
+        <div className="container mx-auto px-4 py-2 flex items-center justify-between">
           <Link to="/">
-            <h1 className="text-2xl font-bold text-primary font-[Montserrat] hover:text-primary/80 transition-colors">
+            <h1 className="text-xl font-bold text-primary font-[Montserrat] hover:text-primary/80 transition-colors">
               Natural Físico
             </h1>
           </Link>
@@ -95,28 +95,28 @@ const ProdutoDetalhes = () => {
       </nav>
 
       {/* Breadcrumb */}
-      <div className="container mx-auto px-4 pt-28 pb-8">
-        <div className="flex items-center gap-3 text-base font-[Open_Sans] animate-fade-in">
+      <div className="container mx-auto px-4 pt-16 pb-3 hidden md:block">
+        <div className="flex items-center gap-2 text-sm font-[Open_Sans] animate-fade-in">
           <Link to="/" className="text-muted-foreground hover:text-primary transition-colors">
             Home
           </Link>
-          <ChevronRight className="w-5 h-5 text-muted-foreground" />
+          <ChevronRight className="w-4 h-4 text-muted-foreground" />
           <Link to="/produtos" className="text-muted-foreground hover:text-primary transition-colors">
             Produtos
           </Link>
-          <ChevronRight className="w-5 h-5 text-muted-foreground" />
+          <ChevronRight className="w-4 h-4 text-muted-foreground" />
           <span className="text-muted-foreground">{product.category}</span>
-          <ChevronRight className="w-5 h-5 text-muted-foreground" />
+          <ChevronRight className="w-4 h-4 text-muted-foreground" />
           <span className="text-primary font-semibold">{product.name}</span>
         </div>
       </div>
 
       {/* Product Details */}
-      <section className="container mx-auto px-4 py-12">
-        <div className="grid md:grid-cols-5 gap-12 items-start">
+      <section className="flex-1 flex items-center container mx-auto px-4 overflow-auto md:pt-16 pt-20">
+        <div className="grid md:grid-cols-5 gap-6 items-center w-full">
           {/* Image */}
           <div className="md:col-span-3 animate-slide-in-left">
-            <div className="aspect-square overflow-hidden rounded-lg border-4 border-primary shadow-2xl">
+            <div className="aspect-[4/3] max-h-[500px] overflow-hidden rounded-lg border-4 border-primary shadow-2xl">
               <img
                 src={product.image}
                 alt={product.name}
@@ -126,56 +126,56 @@ const ProdutoDetalhes = () => {
           </div>
 
           {/* Info */}
-          <div className="md:col-span-2 space-y-8 animate-slide-in-right">
+          <div className="md:col-span-2 space-y-4 animate-slide-in-right">
             <div>
-              <span className="inline-block px-5 py-2 bg-primary text-secondary rounded-full text-xs font-bold font-[Montserrat] mb-6 animate-pulse uppercase tracking-wider">
+              <span className="inline-block px-4 py-1.5 bg-primary text-secondary rounded-full text-xs font-bold font-[Montserrat] mb-3 animate-pulse uppercase tracking-wider">
                 {product.category}
               </span>
-              <h1 className="text-4xl md:text-5xl font-bold text-secondary mb-8 font-[Montserrat] leading-tight">
+              <h1 className="text-3xl md:text-4xl font-bold text-secondary mb-4 font-[Montserrat] leading-tight">
                 {product.name}
               </h1>
-              <p className="text-6xl font-bold text-primary mb-8 font-[Montserrat] animate-pulse-glow">
+              <p className="text-4xl md:text-5xl font-bold text-primary mb-4 font-[Montserrat] animate-pulse-glow">
                 {formatPrice(product.price)}
               </p>
             </div>
 
-            <div className="border-t-2 border-border pt-8">
-              <h2 className="text-2xl font-bold text-secondary mb-4 font-[Montserrat]">
+            <div className="border-t border-border pt-4">
+              <h2 className="text-xl font-bold text-secondary mb-2 font-[Montserrat]">
                 Descrição
               </h2>
-              <p className="text-foreground leading-relaxed font-[Open_Sans] text-base">
+              <p className="text-foreground leading-relaxed font-[Open_Sans] text-sm line-clamp-3">
                 {product.detailedDescription}
               </p>
             </div>
 
             {/* Flavor Selector */}
             {product.flavors.length > 0 && (
-              <div className="border-t-2 border-border pt-8 bg-muted/30 p-6 rounded-lg">
-                <h2 className="text-2xl font-bold text-secondary mb-4 font-[Montserrat]">
+              <div className="border-t border-border pt-4 bg-muted/30 p-4 rounded-lg">
+                <h2 className="text-xl font-bold text-secondary mb-3 font-[Montserrat]">
                   Escolha o sabor <span className="text-destructive">*</span>
                 </h2>
                 <Select value={selectedFlavor} onValueChange={setSelectedFlavor}>
-                  <SelectTrigger className="w-full border-2 border-primary text-foreground bg-background h-12 text-base">
+                  <SelectTrigger className="w-full border-2 border-primary text-foreground bg-background h-11 text-sm">
                     <SelectValue placeholder="Selecione um sabor" />
                   </SelectTrigger>
-                  <SelectContent className="bg-background border-2 border-primary">
+                  <SelectContent className="bg-background border-2 border-primary z-50">
                     {product.flavors.map((flavor) => (
-                      <SelectItem key={flavor} value={flavor} className="cursor-pointer hover:bg-primary/10 text-base">
+                      <SelectItem key={flavor} value={flavor} className="cursor-pointer hover:bg-primary/10 text-sm">
                         {flavor}
                       </SelectItem>
                     ))}
                   </SelectContent>
                 </Select>
-                <p className="text-sm text-muted-foreground mt-2 font-[Open_Sans]">* Obrigatório</p>
+                <p className="text-xs text-muted-foreground mt-1.5 font-[Open_Sans]">* Obrigatório</p>
               </div>
             )}
 
             {/* Action Buttons */}
-            <div className="flex flex-col gap-4 border-t-2 border-border pt-8">
+            <div className="flex flex-col gap-3 border-t border-border pt-4">
               <Button
                 onClick={handleAddToCart}
                 size="lg"
-                className="w-full bg-primary text-secondary hover:bg-primary/90 font-bold text-lg py-4 font-[Montserrat] active:scale-95 transition-all shadow-lg hover:shadow-2xl"
+                className="w-full bg-primary text-secondary hover:bg-primary/90 font-bold text-base py-3 font-[Montserrat] active:scale-95 transition-all shadow-lg hover:shadow-2xl"
               >
                 <ShoppingCart className="h-5 w-5 mr-2" />
                 Adicionar ao Carrinho
@@ -184,7 +184,7 @@ const ProdutoDetalhes = () => {
                 onClick={handleWhatsAppBuy}
                 size="lg"
                 variant="outline"
-                className="w-full border-2 border-primary text-primary hover:bg-primary/10 font-bold text-lg py-4 font-[Montserrat] active:scale-95 transition-all"
+                className="w-full border-2 border-primary text-primary hover:bg-primary/10 font-bold text-base py-3 font-[Montserrat] active:scale-95 transition-all"
               >
                 <MessageCircle className="h-5 w-5 mr-2" />
                 Comprar via WhatsApp
@@ -195,9 +195,9 @@ const ProdutoDetalhes = () => {
       </section>
 
       {/* Footer */}
-      <footer className="bg-secondary text-white py-8 mt-20">
+      <footer className="bg-secondary text-white py-3">
         <div className="container mx-auto px-4 text-center">
-          <p className="font-[Open_Sans]">&copy; 2025 Natural Físico Suplementos. Todos os direitos reservados.</p>
+          <p className="font-[Open_Sans] text-xs">&copy; 2025 Natural Físico Suplementos. Todos os direitos reservados.</p>
         </div>
       </footer>
     </div>
