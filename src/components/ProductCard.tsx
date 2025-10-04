@@ -30,26 +30,26 @@ export const ProductCard = ({ product }: ProductCardProps) => {
           <img 
             src={product.image} 
             alt={product.name}
-            className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
+            className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
           />
         </div>
-        <div className="p-6">
-          <span className="text-sm text-primary font-semibold font-[Montserrat] animate-pulse">
+        <div className="p-8 space-y-4">
+          <span className="text-xs text-primary font-bold font-[Montserrat] uppercase tracking-wider animate-pulse">
             {product.category}
           </span>
-          <h3 className="text-xl font-bold mt-2 mb-2 text-secondary font-[Montserrat]">
+          <h3 className="text-xl font-bold text-secondary font-[Montserrat] leading-tight">
             {product.name}
           </h3>
-          <p className="text-muted-foreground text-sm mb-3 font-[Open_Sans]">
+          <p className="text-muted-foreground text-sm font-[Open_Sans] leading-relaxed">
             {product.description}
           </p>
-          <p className="text-3xl font-bold text-primary mb-4 font-[Montserrat]">
+          <p className="text-4xl font-bold text-primary font-[Montserrat]">
             {formatPrice(product.price)}
           </p>
-          <div className="flex gap-2">
+          <div className="flex gap-3 pt-2">
             <Link to={`/produto/${product.id}`} className="flex-1">
               <Button 
-                className="w-full bg-primary text-secondary hover:bg-primary/90 font-[Montserrat] active:scale-95 transition-transform"
+                className="w-full bg-primary text-secondary hover:bg-primary/90 font-[Montserrat] active:scale-95 transition-all py-3 shadow-lg hover:shadow-xl"
               >
                 <Eye className="h-4 w-4 mr-2" />
                 Ver Detalhes
@@ -57,7 +57,7 @@ export const ProductCard = ({ product }: ProductCardProps) => {
             </Link>
             <Button 
               onClick={handleAddToCart}
-              className="border-primary text-primary hover:bg-primary/10 font-[Montserrat] active:scale-95 transition-transform"
+              className="border-2 border-primary text-primary hover:bg-primary/10 font-[Montserrat] active:scale-95 transition-all"
               variant="outline"
             >
               <ShoppingCart className="h-4 w-4" />

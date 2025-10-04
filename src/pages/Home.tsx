@@ -70,23 +70,23 @@ const Home = () => {
       </section>
 
       {/* Product Highlights */}
-      <section className="py-20 bg-background">
+      <section className="py-24 bg-background">
         <div className="container mx-auto px-4">
-          <h2 className="text-4xl font-bold text-center mb-12 text-secondary font-[Montserrat]">
+          <h2 className="text-4xl font-bold text-center mb-16 text-secondary font-[Montserrat]">
             Destaques
           </h2>
-          <div className="grid md:grid-cols-3 gap-8">
+          <div className="grid md:grid-cols-3 gap-10">
             {products.map((product, index) => (
-              <Card key={product.name} className={`overflow-hidden border-2 border-border hover:border-primary transition-all hover:shadow-xl duration-300 hover-lift hover-glow animate-fade-in animate-stagger-${index + 1}`}>
+              <Card key={product.name} className={`overflow-hidden border-2 border-border hover:border-primary transition-all hover:shadow-2xl duration-500 hover:-translate-y-2 hover-glow animate-fade-in animate-stagger-${index + 1}`}>
                 <CardContent className="p-0">
                   <div className="aspect-square overflow-hidden bg-muted">
                     <img 
                       src={product.image} 
                       alt={product.name}
-                      className="w-full h-full object-cover transition-transform duration-500 hover:scale-110"
+                      className="w-full h-full object-cover transition-transform duration-700 hover:scale-110"
                     />
                   </div>
-                  <div className="p-6">
+                  <div className="p-8">
                     <h3 className="text-2xl font-bold text-secondary font-[Montserrat]">{product.name}</h3>
                   </div>
                 </CardContent>
@@ -97,9 +97,9 @@ const Home = () => {
       </section>
 
       {/* About Section */}
-      <section className="py-20 bg-muted">
+      <section className="py-24 bg-muted">
         <div className="container mx-auto px-4 max-w-4xl text-center">
-          <h2 className="text-4xl font-bold mb-6 text-secondary font-[Montserrat]">
+          <h2 className="text-4xl font-bold mb-8 text-secondary font-[Montserrat]">
             Sobre Nós
           </h2>
           <p className="text-lg text-foreground leading-relaxed font-[Open_Sans]">
@@ -110,17 +110,17 @@ const Home = () => {
       </section>
 
       {/* Benefits */}
-      <section className="py-20 bg-secondary text-white">
+      <section className="py-24 bg-secondary text-white">
         <div className="container mx-auto px-4">
-          <h2 className="text-4xl font-bold text-center mb-12 text-primary font-[Montserrat]">
+          <h2 className="text-4xl font-bold text-center mb-16 text-primary font-[Montserrat]">
             Nossos Diferenciais
           </h2>
-          <div className="grid md:grid-cols-3 gap-8">
+          <div className="grid md:grid-cols-3 gap-10">
             {benefits.map((benefit, index) => {
               const Icon = benefit.icon;
               return (
-                <div key={index} className="text-center p-8 rounded-lg bg-secondary-foreground/10 hover:bg-primary/10 transition-all duration-300 hover-lift animate-rotate-in">
-                  <Icon className="w-16 h-16 mx-auto mb-4 text-primary animate-bounce-subtle" />
+                <div key={index} className="text-center p-10 rounded-lg bg-secondary-foreground/10 backdrop-blur-sm hover:bg-primary/10 transition-all duration-500 hover:-translate-y-2 shadow-lg hover:shadow-2xl animate-rotate-in border border-primary/20">
+                  <Icon className="w-20 h-20 mx-auto mb-6 text-primary animate-bounce-subtle" />
                   <p className="text-xl font-semibold font-[Montserrat]">{benefit.text}</p>
                 </div>
               );
@@ -147,18 +147,18 @@ const Home = () => {
       </section>
 
       {/* Locations */}
-      <section className="py-20 bg-muted">
+      <section className="py-24 bg-muted">
         <div className="container mx-auto px-4">
-          <h2 className="text-4xl font-bold text-center mb-12 text-secondary font-[Montserrat]">
+          <h2 className="text-4xl font-bold text-center mb-16 text-secondary font-[Montserrat]">
             Nossas Unidades
           </h2>
-          <div className="grid md:grid-cols-3 gap-8">
+          <div className="grid md:grid-cols-3 gap-10">
             {stores.map((store, index) => (
-              <Card key={index} className="transition-all duration-300 border-2 hover:border-primary hover-lift hover-glow animate-slide-in-up" style={{ animationDelay: `${index * 100}ms` }}>
-                <CardContent className="p-6">
-                  <MapPin className="w-8 h-8 text-primary mb-4" />
-                  <h3 className="text-xl font-bold mb-2 text-secondary font-[Montserrat]">{store.name}</h3>
-                  <p className="text-muted-foreground font-[Open_Sans]">{store.address}</p>
+              <Card key={index} className="transition-all duration-500 border-2 hover:border-primary hover:-translate-y-2 shadow-lg hover:shadow-2xl animate-slide-in-up" style={{ animationDelay: `${index * 100}ms` }}>
+                <CardContent className="p-8">
+                  <MapPin className="w-10 h-10 text-primary mb-6" />
+                  <h3 className="text-xl font-bold mb-3 text-secondary font-[Montserrat]">{store.name}</h3>
+                  <p className="text-muted-foreground font-[Open_Sans] leading-relaxed">{store.address}</p>
                 </CardContent>
               </Card>
             ))}

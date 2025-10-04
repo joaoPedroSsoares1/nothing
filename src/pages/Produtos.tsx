@@ -34,9 +34,9 @@ const Produtos = () => {
       </nav>
 
       {/* Header */}
-      <section className="pt-32 pb-16 bg-gradient-to-b from-secondary to-background">
+      <section className="pt-36 pb-20 bg-gradient-to-b from-secondary to-background">
         <div className="container mx-auto px-4 text-center">
-          <h1 className="text-5xl font-bold mb-4 text-primary font-[Montserrat] animate-slide-in-down">
+          <h1 className="text-5xl font-bold mb-6 text-primary font-[Montserrat] animate-slide-in-down">
             Nossa Vitrine de Suplementos
           </h1>
           <p className="text-xl text-muted-foreground font-[Open_Sans] animate-slide-in-down delay-100">
@@ -46,7 +46,7 @@ const Produtos = () => {
       </section>
 
       {/* Filters */}
-      <section className="py-8 bg-background sticky top-20 z-40 border-b border-border">
+      <section className="py-8 bg-background sticky top-20 z-40 border-b-2 border-border backdrop-blur-sm">
         <div className="container mx-auto px-4">
           <div className="flex flex-wrap justify-center gap-4">
             {categories.map((filter) => (
@@ -54,10 +54,10 @@ const Produtos = () => {
                 key={filter}
                 variant={activeFilter === filter ? "default" : "outline"}
                 onClick={() => setActiveFilter(filter)}
-                className={`font-[Montserrat] transition-all duration-300 active:scale-95 ${
+                className={`font-[Montserrat] transition-all duration-300 active:scale-95 px-6 py-3 ${
                   activeFilter === filter 
-                    ? "bg-primary text-secondary hover:bg-primary/90 scale-105" 
-                    : "border-primary text-primary hover:bg-primary/10"
+                    ? "bg-primary text-secondary hover:bg-primary/90 scale-105 border-4 border-primary shadow-lg" 
+                    : "border-2 border-primary text-primary hover:bg-primary/10"
                 }`}
               >
                 {filter}
@@ -68,9 +68,9 @@ const Produtos = () => {
       </section>
 
       {/* Products Grid */}
-      <section className="py-16">
+      <section className="py-20">
         <div className="container mx-auto px-4">
-          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
+          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-10">
             {filteredProducts.map((product, index) => (
               <div key={index} className="animate-fade-in" style={{ animationDelay: `${index * 50}ms` }}>
                 <ProductCard product={product} />
@@ -79,7 +79,7 @@ const Produtos = () => {
           </div>
 
           {filteredProducts.length === 0 && (
-            <div className="text-center py-20">
+            <div className="text-center py-24">
               <p className="text-2xl text-muted-foreground font-[Open_Sans]">
                 Nenhum produto encontrado nesta categoria
               </p>

@@ -96,26 +96,26 @@ const ProdutoDetalhes = () => {
 
       {/* Breadcrumb */}
       <div className="container mx-auto px-4 pt-28 pb-8">
-        <div className="flex items-center gap-2 text-sm font-[Open_Sans] animate-fade-in">
+        <div className="flex items-center gap-3 text-base font-[Open_Sans] animate-fade-in">
           <Link to="/" className="text-muted-foreground hover:text-primary transition-colors">
             Home
           </Link>
-          <ChevronRight className="w-4 h-4 text-muted-foreground" />
+          <ChevronRight className="w-5 h-5 text-muted-foreground" />
           <Link to="/produtos" className="text-muted-foreground hover:text-primary transition-colors">
             Produtos
           </Link>
-          <ChevronRight className="w-4 h-4 text-muted-foreground" />
+          <ChevronRight className="w-5 h-5 text-muted-foreground" />
           <span className="text-muted-foreground">{product.category}</span>
-          <ChevronRight className="w-4 h-4 text-muted-foreground" />
+          <ChevronRight className="w-5 h-5 text-muted-foreground" />
           <span className="text-primary font-semibold">{product.name}</span>
         </div>
       </div>
 
       {/* Product Details */}
       <section className="container mx-auto px-4 py-12">
-        <div className="grid md:grid-cols-2 gap-12 items-start">
+        <div className="grid md:grid-cols-5 gap-12 items-start">
           {/* Image */}
-          <div className="animate-slide-in-left">
+          <div className="md:col-span-3 animate-slide-in-left">
             <div className="aspect-square overflow-hidden rounded-lg border-4 border-primary shadow-2xl">
               <img
                 src={product.image}
@@ -126,56 +126,56 @@ const ProdutoDetalhes = () => {
           </div>
 
           {/* Info */}
-          <div className="space-y-6 animate-slide-in-right">
+          <div className="md:col-span-2 space-y-8 animate-slide-in-right">
             <div>
-              <span className="inline-block px-4 py-2 bg-primary text-secondary rounded-full text-sm font-bold font-[Montserrat] mb-4 animate-pulse">
+              <span className="inline-block px-5 py-2 bg-primary text-secondary rounded-full text-xs font-bold font-[Montserrat] mb-6 animate-pulse uppercase tracking-wider">
                 {product.category}
               </span>
-              <h1 className="text-4xl md:text-5xl font-bold text-secondary mb-4 font-[Montserrat]">
+              <h1 className="text-4xl md:text-5xl font-bold text-secondary mb-8 font-[Montserrat] leading-tight">
                 {product.name}
               </h1>
-              <p className="text-5xl font-bold text-primary mb-6 font-[Montserrat] animate-pulse-glow">
+              <p className="text-6xl font-bold text-primary mb-8 font-[Montserrat] animate-pulse-glow">
                 {formatPrice(product.price)}
               </p>
             </div>
 
-            <div className="border-t border-border pt-6">
-              <h2 className="text-xl font-bold text-secondary mb-3 font-[Montserrat]">
+            <div className="border-t-2 border-border pt-8">
+              <h2 className="text-2xl font-bold text-secondary mb-4 font-[Montserrat]">
                 Descrição
               </h2>
-              <p className="text-foreground leading-relaxed font-[Open_Sans]">
+              <p className="text-foreground leading-relaxed font-[Open_Sans] text-base">
                 {product.detailedDescription}
               </p>
             </div>
 
             {/* Flavor Selector */}
             {product.flavors.length > 0 && (
-              <div className="border-t border-border pt-6">
-                <h2 className="text-xl font-bold text-secondary mb-3 font-[Montserrat]">
+              <div className="border-t-2 border-border pt-8 bg-muted/30 p-6 rounded-lg">
+                <h2 className="text-2xl font-bold text-secondary mb-4 font-[Montserrat]">
                   Escolha o sabor <span className="text-destructive">*</span>
                 </h2>
                 <Select value={selectedFlavor} onValueChange={setSelectedFlavor}>
-                  <SelectTrigger className="w-full border-2 border-primary text-foreground bg-background">
+                  <SelectTrigger className="w-full border-2 border-primary text-foreground bg-background h-12 text-base">
                     <SelectValue placeholder="Selecione um sabor" />
                   </SelectTrigger>
                   <SelectContent className="bg-background border-2 border-primary">
                     {product.flavors.map((flavor) => (
-                      <SelectItem key={flavor} value={flavor} className="cursor-pointer hover:bg-primary/10">
+                      <SelectItem key={flavor} value={flavor} className="cursor-pointer hover:bg-primary/10 text-base">
                         {flavor}
                       </SelectItem>
                     ))}
                   </SelectContent>
                 </Select>
-                <p className="text-sm text-muted-foreground mt-1 font-[Open_Sans]">* Obrigatório</p>
+                <p className="text-sm text-muted-foreground mt-2 font-[Open_Sans]">* Obrigatório</p>
               </div>
             )}
 
             {/* Action Buttons */}
-            <div className="flex flex-col sm:flex-row gap-4 border-t border-border pt-6">
+            <div className="flex flex-col gap-4 border-t-2 border-border pt-8">
               <Button
                 onClick={handleAddToCart}
                 size="lg"
-                className="flex-1 bg-primary text-secondary hover:bg-primary/90 font-bold text-lg py-6 font-[Montserrat] active:scale-95 transition-transform hover-lift"
+                className="w-full bg-primary text-secondary hover:bg-primary/90 font-bold text-lg py-4 font-[Montserrat] active:scale-95 transition-all shadow-lg hover:shadow-2xl"
               >
                 <ShoppingCart className="h-5 w-5 mr-2" />
                 Adicionar ao Carrinho
@@ -184,7 +184,7 @@ const ProdutoDetalhes = () => {
                 onClick={handleWhatsAppBuy}
                 size="lg"
                 variant="outline"
-                className="flex-1 border-2 border-primary text-primary hover:bg-primary/10 font-bold text-lg py-6 font-[Montserrat] active:scale-95 transition-transform hover-lift"
+                className="w-full border-2 border-primary text-primary hover:bg-primary/10 font-bold text-lg py-4 font-[Montserrat] active:scale-95 transition-all"
               >
                 <MessageCircle className="h-5 w-5 mr-2" />
                 Comprar via WhatsApp
