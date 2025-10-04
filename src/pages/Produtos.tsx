@@ -36,10 +36,10 @@ const Produtos = () => {
       {/* Header */}
       <section className="pt-32 pb-16 bg-gradient-to-b from-secondary to-background">
         <div className="container mx-auto px-4 text-center">
-          <h1 className="text-5xl font-bold mb-4 text-primary font-[Montserrat]">
+          <h1 className="text-5xl font-bold mb-4 text-primary font-[Montserrat] animate-slide-in-down">
             Nossa Vitrine de Suplementos
           </h1>
-          <p className="text-xl text-muted-foreground font-[Open_Sans]">
+          <p className="text-xl text-muted-foreground font-[Open_Sans] animate-slide-in-down delay-100">
             Encontre o suplemento ideal para seus objetivos
           </p>
         </div>
@@ -54,9 +54,9 @@ const Produtos = () => {
                 key={filter}
                 variant={activeFilter === filter ? "default" : "outline"}
                 onClick={() => setActiveFilter(filter)}
-                className={`font-[Montserrat] transition-all ${
+                className={`font-[Montserrat] transition-all duration-300 active:scale-95 ${
                   activeFilter === filter 
-                    ? "bg-primary text-secondary hover:bg-primary/90" 
+                    ? "bg-primary text-secondary hover:bg-primary/90 scale-105" 
                     : "border-primary text-primary hover:bg-primary/10"
                 }`}
               >
@@ -72,7 +72,9 @@ const Produtos = () => {
         <div className="container mx-auto px-4">
           <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
             {filteredProducts.map((product, index) => (
-              <ProductCard key={index} product={product} />
+              <div key={index} className="animate-fade-in" style={{ animationDelay: `${index * 50}ms` }}>
+                <ProductCard product={product} />
+              </div>
             ))}
           </div>
 

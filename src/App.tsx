@@ -6,6 +6,7 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { CartProvider } from "@/contexts/CartContext";
 import Home from "./pages/Home";
 import Produtos from "./pages/Produtos";
+import ProdutoDetalhes from "./pages/ProdutoDetalhes";
 import Carrinho from "./pages/Carrinho";
 import NotFound from "./pages/NotFound";
 
@@ -18,13 +19,16 @@ const App = () => (
         <Toaster />
         <Sonner />
         <BrowserRouter>
-          <Routes>
-            <Route path="/" element={<Home />} />
-            <Route path="/produtos" element={<Produtos />} />
-            <Route path="/carrinho" element={<Carrinho />} />
-            {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
-            <Route path="*" element={<NotFound />} />
-          </Routes>
+          <div className="animate-fade-in">
+            <Routes>
+              <Route path="/" element={<Home />} />
+              <Route path="/produtos" element={<Produtos />} />
+              <Route path="/produto/:id" element={<ProdutoDetalhes />} />
+              <Route path="/carrinho" element={<Carrinho />} />
+              {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
+              <Route path="*" element={<NotFound />} />
+            </Routes>
+          </div>
         </BrowserRouter>
       </CartProvider>
     </TooltipProvider>

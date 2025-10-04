@@ -55,14 +55,14 @@ const Home = () => {
         </div>
         
         <div className="relative z-10 container mx-auto px-4 text-left max-w-2xl">
-          <h1 className="text-5xl md:text-7xl font-bold mb-6 text-primary font-[Montserrat] animate-fade-in">
+          <h1 className="text-5xl md:text-7xl font-bold mb-6 text-primary font-[Montserrat] animate-slide-in-left">
             Natural Físico Suplementos
           </h1>
-          <p className="text-2xl md:text-3xl mb-8 text-white font-[Open_Sans] animate-fade-in">
+          <p className="text-2xl md:text-3xl mb-8 text-white font-[Open_Sans] animate-slide-in-left delay-200">
             Te inspiramos na busca da sua Melhor Versão!
           </p>
           <Link to="/produtos">
-            <Button size="lg" className="bg-primary text-secondary hover:bg-primary/90 font-bold text-lg px-8 py-6 font-[Montserrat] transition-all hover:scale-105">
+            <Button size="lg" className="bg-primary text-secondary hover:bg-primary/90 font-bold text-lg px-8 py-6 font-[Montserrat] transition-all hover:scale-105 animate-pulse-glow">
               Conheça nossos produtos
             </Button>
           </Link>
@@ -76,14 +76,14 @@ const Home = () => {
             Destaques
           </h2>
           <div className="grid md:grid-cols-3 gap-8">
-            {products.map((product) => (
-              <Card key={product.name} className="overflow-hidden border-2 border-border hover:border-primary transition-all hover:shadow-xl hover:scale-105 duration-300">
+            {products.map((product, index) => (
+              <Card key={product.name} className={`overflow-hidden border-2 border-border hover:border-primary transition-all hover:shadow-xl duration-300 hover-lift hover-glow animate-fade-in animate-stagger-${index + 1}`}>
                 <CardContent className="p-0">
                   <div className="aspect-square overflow-hidden bg-muted">
                     <img 
                       src={product.image} 
                       alt={product.name}
-                      className="w-full h-full object-cover"
+                      className="w-full h-full object-cover transition-transform duration-500 hover:scale-110"
                     />
                   </div>
                   <div className="p-6">
@@ -119,8 +119,8 @@ const Home = () => {
             {benefits.map((benefit, index) => {
               const Icon = benefit.icon;
               return (
-                <div key={index} className="text-center p-8 rounded-lg bg-secondary-foreground/10 hover:bg-primary/10 transition-all hover:scale-105 duration-300">
-                  <Icon className="w-16 h-16 mx-auto mb-4 text-primary" />
+                <div key={index} className="text-center p-8 rounded-lg bg-secondary-foreground/10 hover:bg-primary/10 transition-all duration-300 hover-lift animate-rotate-in">
+                  <Icon className="w-16 h-16 mx-auto mb-4 text-primary animate-bounce-subtle" />
                   <p className="text-xl font-semibold font-[Montserrat]">{benefit.text}</p>
                 </div>
               );
@@ -136,10 +136,10 @@ const Home = () => {
             Siga nossas redes
           </h2>
           <div className="flex justify-center gap-6">
-            <a href="#" className="p-4 bg-primary rounded-full hover:scale-110 transition-transform duration-300">
+            <a href="#" className="p-4 bg-primary rounded-full hover:scale-110 hover:rotate-6 transition-all duration-300 animate-bounce-subtle">
               <Instagram className="w-8 h-8 text-secondary" />
             </a>
-            <a href="#" className="p-4 bg-primary rounded-full hover:scale-110 transition-transform duration-300">
+            <a href="#" className="p-4 bg-primary rounded-full hover:scale-110 hover:rotate-6 transition-all duration-300 animate-bounce-subtle">
               <Facebook className="w-8 h-8 text-secondary" />
             </a>
           </div>
@@ -154,7 +154,7 @@ const Home = () => {
           </h2>
           <div className="grid md:grid-cols-3 gap-8">
             {stores.map((store, index) => (
-              <Card key={index} className="hover:shadow-xl transition-all hover:scale-105 duration-300 border-2 hover:border-primary">
+              <Card key={index} className="transition-all duration-300 border-2 hover:border-primary hover-lift hover-glow animate-slide-in-up" style={{ animationDelay: `${index * 100}ms` }}>
                 <CardContent className="p-6">
                   <MapPin className="w-8 h-8 text-primary mb-4" />
                   <h3 className="text-xl font-bold mb-2 text-secondary font-[Montserrat]">{store.name}</h3>
