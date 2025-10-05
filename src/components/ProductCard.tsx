@@ -33,23 +33,23 @@ export const ProductCard = ({ product }: ProductCardProps) => {
             className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
           />
         </div>
-        <div className="p-8 space-y-4">
+        <div className="p-6 md:p-8 space-y-3 md:space-y-4">
           <span className="text-xs text-primary font-bold font-[Montserrat] uppercase tracking-wider animate-pulse">
             {product.category}
           </span>
-          <h3 className="text-xl font-bold text-secondary font-[Montserrat] leading-tight">
+          <h3 className="text-lg md:text-xl font-bold text-secondary font-[Montserrat] leading-tight">
             {product.name}
           </h3>
-          <p className="text-muted-foreground text-sm font-[Open_Sans] leading-relaxed">
+          <p className="text-muted-foreground text-sm font-[Open_Sans] leading-relaxed line-clamp-2">
             {product.description}
           </p>
-          <p className="text-4xl font-bold text-primary font-[Montserrat]">
+          <p className="text-3xl md:text-4xl font-bold text-primary font-[Montserrat]">
             {formatPrice(product.price)}
           </p>
-          <div className="flex gap-3 pt-2">
+          <div className="flex gap-2 md:gap-3 pt-2">
             <Link to={`/produto/${product.id}`} className="flex-1">
               <Button 
-                className="w-full bg-primary text-secondary hover:bg-primary/90 font-[Montserrat] active:scale-95 transition-all py-3 shadow-lg hover:shadow-xl"
+                className="w-full bg-primary text-secondary hover:bg-primary/90 font-[Montserrat] active:scale-95 transition-all py-5 md:py-3 shadow-lg hover:shadow-xl text-sm md:text-base"
               >
                 <Eye className="h-4 w-4 mr-2" />
                 Ver Detalhes
@@ -57,7 +57,7 @@ export const ProductCard = ({ product }: ProductCardProps) => {
             </Link>
             <Button 
               onClick={handleAddToCart}
-              className="border-2 border-primary text-primary hover:bg-primary/10 font-[Montserrat] active:scale-95 transition-all"
+              className="border-2 border-primary text-primary hover:bg-primary/10 font-[Montserrat] active:scale-95 transition-all py-5 md:py-3 text-sm md:text-base"
               variant="outline"
             >
               <ShoppingCart className="h-4 w-4" />
