@@ -134,7 +134,7 @@ const ProdutoDetalhes = () => {
               <h1 className="text-3xl md:text-4xl font-bold text-secondary mb-4 font-[Montserrat] leading-tight">
                 {product.name}
               </h1>
-              <p className="text-4xl md:text-5xl font-bold text-primary mb-4 font-[Montserrat] animate-pulse-glow">
+              <p className="text-4xl md:text-5xl font-bold text-primary mb-4 font-[Montserrat]">
                 {formatPrice(product.price)}
               </p>
             </div>

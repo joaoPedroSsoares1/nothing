@@ -172,7 +172,7 @@ const Carrinho = () => {
                         <p className="text-2xl font-bold text-secondary font-[Montserrat]">
                           Valor Total:
                         </p>
-                        <p className="text-5xl font-bold text-primary font-[Montserrat] animate-pulse-glow">
+                        <p className="text-5xl font-bold text-primary font-[Montserrat]">
                           {formatPrice(totalValue)}
                         </p>
                       </div>
@@ -193,7 +193,7 @@ const Carrinho = () => {
                 <Button
                   size="lg"
                   onClick={handleSendOrder}
-                  className="bg-primary text-secondary hover:bg-primary/90 font-bold text-xl px-12 py-6 font-[Montserrat] active:scale-95 transition-all shadow-lg hover:shadow-2xl animate-pulse-glow"
+                  className="bg-primary text-secondary hover:bg-primary/90 font-bold text-xl px-12 py-6 font-[Montserrat] active:scale-95 transition-all shadow-lg hover:shadow-2xl"
                 >
                   Finalizar Pedido ({formatPrice(totalValue)})
                 </Button>

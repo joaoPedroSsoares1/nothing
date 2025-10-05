@@ -2,6 +2,7 @@ import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import { Shield, Dumbbell, Users, Instagram, Facebook, MapPin } from "lucide-react";
 import { Link } from "react-router-dom";
+import { useState, useEffect } from "react";
 import { CartButton } from "@/components/CartButton";
 import heroImage from "@/assets/hero-training.jpg";
 import wheyImage from "@/assets/whey-protein.jpg";
@@ -9,6 +10,16 @@ import creatinaImage from "@/assets/creatina.jpg";
 import preTreinoImage from "@/assets/pre-treino.jpg";
 
 const Home = () => {
+  const [isScrolled, setIsScrolled] = useState(false);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      setIsScrolled(window.scrollY > 100);
+    };
+    window.addEventListener('scroll', handleScroll);
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
+
   const products = [
     { name: "Whey Protein", image: wheyImage },
     { name: "Creatina", image: creatinaImage },
@@ -30,7 +41,7 @@ const Home = () => {
   return (
     <div className="min-h-screen">
       {/* Navigation */}
-      <nav className="fixed top-0 left-0 right-0 z-50 bg-secondary/95 backdrop-blur-sm border-b border-primary/20">
+      <nav className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${isScrolled ? 'bg-secondary/95 backdrop-blur-sm border-b border-primary/20' : 'bg-transparent'}`}>
         <div className="container mx-auto px-4 py-4 flex items-center justify-between">
           <h1 className="text-2xl font-bold text-primary font-[Montserrat]">Natural Físico</h1>
           <div className="flex gap-6 items-center">
@@ -62,7 +73,7 @@ const Home = () => {
             Te inspiramos na busca da sua Melhor Versão!
           </p>
           <Link to="/produtos">
-            <Button size="lg" className="bg-primary text-secondary hover:bg-primary/90 font-bold text-lg px-8 py-6 font-[Montserrat] transition-all hover:scale-105 animate-pulse-glow">
+            <Button size="lg" className="bg-primary text-secondary hover:bg-primary/90 font-bold text-lg px-8 py-6 font-[Montserrat] transition-all hover:scale-105">
               Conheça nossos produtos
             </Button>
           </Link>
@@ -77,7 +88,7 @@ const Home = () => {
           </h2>
           <div className="grid md:grid-cols-3 gap-10">
             {products.map((product, index) => (
-              <Card key={product.name} className={`overflow-hidden border-2 border-border hover:border-primary transition-all hover:shadow-2xl duration-500 hover:-translate-y-2 hover-glow animate-fade-in animate-stagger-${index + 1}`}>
+              <Card key={product.name} className="overflow-hidden border-2 border-border hover:border-primary transition-all hover:shadow-2xl duration-500 hover:-translate-y-2 animate-fade-in">
                 <CardContent className="p-0">
                   <div className="aspect-square overflow-hidden bg-muted">
                     <img 
